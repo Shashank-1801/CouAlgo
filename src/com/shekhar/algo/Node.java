@@ -22,6 +22,7 @@ public class Node {
 			for(int i=0; i < old_len; i++){
 				connection[i] = old_conn[i];
 			}
+			connection[new_len-1] = y
 		}
 	}
 
