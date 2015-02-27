@@ -1,6 +1,6 @@
 package com.shekhar.algo;
 
-public class UF {
+public class UF implements UnionFind{
 	
 	Node[] node;
 
