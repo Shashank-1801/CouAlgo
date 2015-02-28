@@ -14,11 +14,7 @@ public class QuickUnion implements UnionFind{
 	@Override
 	public void union(int p, int q) {
 		System.out.print("Connection between "+ p + " and "+ q);
-		if(id[q] == q){
-			id[p] = q;
-		}else{
-			id[p] = root(q);
-		}
+			id[root(p)] = root(q);
 		System.out.println(" done!");		
 	}
 
