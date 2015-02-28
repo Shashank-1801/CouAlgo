@@ -2,7 +2,6 @@ package com.shekhar.algo.impl;
 
 import java.util.Random;
 
-import com.shekhar.algo.Node;
 import com.shekhar.algo.UF;
 
 public class UFImpl {
@@ -10,9 +9,6 @@ public class UFImpl {
 
 	public static void main(String[] args) {
 
-		Node extraNode = new Node();
-		
-		
 		UF uf = new UF(10);
 			
 		for(int x=0; x<7 ; x++){

@@ -2,7 +2,6 @@ package com.shekhar.algo.impl;
 
 import java.util.Random;
 
-import com.shekhar.algo.QuickFind;
 import com.shekhar.algo.QuickUnion;
 
 public class QuickUnionImpl {
