@@ -2,21 +2,23 @@ package com.shekhar.algo.impl;
 
 import java.util.Random;
 
-import com.shekhar.algo.QuickUnion;
+import com.shekhar.algo.QuickUnionImprovements;
 
-public class QuickUnionImpl {
+public class QuickUnionImprovementImpl {
 
 	/**
 	 * @param args
 	 */
 	public static void main(String[] args) {
-		QuickUnion qu = new QuickUnion(10);
+		QuickUnionImprovements qu = new QuickUnionImprovements(10);
 		
 		for(int x=0; x<7 ; x++){
 			qu.union(randomIntGen(10), randomIntGen(10));
+			qu.display();
+
 		}
 		
-		qu.display();
+//		qu.display();
 		
 		for(int x=0; x<10 ; x++){
 			qu.find(randomIntGen(10), randomIntGen(10));
@@ -31,9 +33,10 @@ public class QuickUnionImpl {
 //		qu.union(5, 0);
 //		qu.union(7, 2);
 //		qu.union(6, 1);
+//		qu.union(7, 5);
 //		qu.union(7, 3);
 //		
-//		qu.display();
+		qu.display();
 		
 	}
 	

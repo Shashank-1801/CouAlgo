@@ -1,24 +1,37 @@
 package com.shekhar.algo;
 
-public class QuickUnion implements UnionFindInterface{
+public class QuickUnionImprovements implements UnionFindInterface{
 	
 	int[] id;
+	int[] size;
 	
-	public QuickUnion(int n){
-		id = new int[10];
+	public QuickUnionImprovements(int n){
+		id = new int[n];
+		size = new int[n];
 		for (int i=0; i<n ; i++){
 			id[i] = i;
+			size[i] = 1;
 		}
 	}
 
-	@Override
 	public void union(int p, int q) {
 		System.out.print("Connection between "+ p + " and "+ q);
-			id[root(p)] = root(q);
+		int rootp = root(id[p]);
+		int rootq = root(id[q]);
+		if(rootp == rootq){
+			System.out.println(" already exists!");		
+			return;
+		}
+		if(size[rootp] < size[rootq]){
+			id[rootp] = rootq;
+			size[rootq] += size[rootp];
+		}else{
+			id[rootq] = rootp;
+			size[rootp] += size[rootq];
+		}
 		System.out.println(" done!");		
 	}
 
-	@Override
 	public boolean find(int p, int q) {
 		System.out.print(p + " and " + q + " are ");
 		if(root(p) == root(q)){
@@ -37,6 +50,7 @@ public class QuickUnion implements UnionFindInterface{
 	public int root(int x) {
 		int parent = id[x];
 		while(parent != id[parent]){
+			id[parent] = id[id[parent]];	//Path compression
 			parent = id[parent];
 		}
 		return parent;
@@ -52,7 +66,16 @@ public class QuickUnion implements UnionFindInterface{
 	
 	public void display(){
 		for(int i=0; i<id.length; i++){
-			System.out.println( i + " -> "+ id[i] + " root at " + root(i));
+			System.out.print( i + " ");
 		}
+		System.out.println();
+		for(int i=0; i<id.length; i++){
+			System.out.print(  id[i] + " ");
+		}
+		System.out.println();
+		for(int i=0; i<id.length; i++){
+			System.out.print( size[i] + " ");
+		}
+		System.out.println();
 	}
 }

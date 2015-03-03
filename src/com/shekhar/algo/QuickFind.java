@@ -1,6 +1,6 @@
 package com.shekhar.algo;
 
-public class QuickFind implements UnionFind {
+public class QuickFind implements UnionFindInterface {
 
 	int[] node_id;
 	
@@ -33,7 +33,7 @@ public class QuickFind implements UnionFind {
 	}
 
 	@Override
-	public boolean connected(int p, int q) {
+	public boolean find(int p, int q) {
 		if(node_id[p]==node_id[q]){
 			System.out.println(p + " and "+ q +" is connected");
 			return true;

@@ -19,7 +19,7 @@ public class QuickFindImpl {
 		qf.display();
 		
 		for(int x=0; x<10 ; x++){
-			System.out.println("Conneted : " +qf.connected(randomIntGen(10), randomIntGen(10)));
+			System.out.println("Conneted : " +qf.find(randomIntGen(10), randomIntGen(10)));
 		}
 		
 	}
