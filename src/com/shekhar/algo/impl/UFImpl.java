@@ -18,7 +18,7 @@ public class UFImpl {
 		uf.display();
 		
 		for(int x=0; x<10 ; x++){
-			uf.connected(randomIntGen(10), randomIntGen(10));
+			uf.find(randomIntGen(10), randomIntGen(10));
 		}
 		
 	}

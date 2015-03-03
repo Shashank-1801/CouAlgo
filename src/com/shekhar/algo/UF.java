@@ -1,6 +1,6 @@
 package com.shekhar.algo;
 
-public class UF implements UnionFind{
+public class UF implements UnionFindInterface{
 	
 	Node[] node;
 
@@ -22,7 +22,7 @@ public class UF implements UnionFind{
 	}
 
 	//indirect connection not checked yet
-	public boolean connected(int p, int q) {
+	public boolean find(int p, int q) {
 		System.out.print("Nodes " + p + " and " + q + " are ");
 		if(p==q) {
 			System.out.println("connected!");
