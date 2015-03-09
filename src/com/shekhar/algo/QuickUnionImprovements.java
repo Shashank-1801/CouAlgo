@@ -50,7 +50,7 @@ public class QuickUnionImprovements implements UnionFindInterface{
 	public int root(int x) {
 		int parent = id[x];
 		while(parent != id[parent]){
-			id[parent] = id[id[parent]];	//Path compression
+//			id[parent] = id[id[parent]];	//Path compression
 			parent = id[parent];
 		}
 		return parent;
