@@ -2,7 +2,7 @@ package com.shekhar.algo.w2;
 
 import java.util.Random;
 
-public class SelectionSort {
+public class InsertionSort {
 
 	@SuppressWarnings({ "rawtypes", "unchecked" })
 	private static boolean less(Comparable v, Comparable w){
@@ -18,7 +18,7 @@ public class SelectionSort {
 
 	public static boolean isSorted(@SuppressWarnings("rawtypes") Comparable[] a){
 		for(int i=0; i<a.length-1; i++){
-			if(less(a[i], a[i+1])){
+			if(less(a[i+1], a[i])){
 				return false;
 			}
 		}
@@ -28,13 +28,11 @@ public class SelectionSort {
 	public static void doSort(@SuppressWarnings("rawtypes") Comparable[] a){
 		int len = a.length;
 		for(int i=0; i<len; i++){
-			int min = i;
-			for(int j=i; j<len; j++){
-				if(less(a[j], a[min])){
-					min = j;
+			for(int j=i; j>=1; j--){
+				if(less(a[j], a[j-1])){
+					exch(a, j, j-1);
 				}
 			}
-			exch(a, i, min);
 		}
 	}
 	
@@ -70,10 +68,13 @@ public class SelectionSort {
 		//fill(aa);
 		display(aa);
 		doSort(aa);
-		display(aa);		
+		display(aa);	
+		System.out.println(isSorted(aa));
+		System.out.println("************************");
 		doSortRev(aa);
 		display(aa);	
 		System.out.println(isSorted(aa));
+		System.out.println("************************");
 		
 		Integer[] in = {9,1,4,6,8,2,3,7,2,4};
 		//fill(in);
