@@ -2,7 +2,7 @@ package com.shekhar.algo.w2;
 
 import java.util.Random;
 
-public class InsertionSort {
+public class ShellSort {
 
 	@SuppressWarnings({ "rawtypes", "unchecked" })
 	private static boolean less(Comparable v, Comparable w){
@@ -27,13 +27,27 @@ public class InsertionSort {
 	
 	public static void doSort(@SuppressWarnings("rawtypes") Comparable[] a){
 		int len = a.length;
-		for(int i=0; i<len; i++){
-			for(int j=i; j>=1; j--){
-				if(less(a[j], a[j-1])){
-					exch(a, j, j-1);
+		int h=1;
+		while(h<len/3){
+			h = 3*h+1;
+		}
+		while(h >=1){
+			for(int i=h ; i<len; i++){
+				for(int j=i; j <len; j++){
+					if(less(a[j], a[j-h])){
+						exch(a, j, j-h);
+					}
 				}
 			}
+			h=h/3;
 		}
+//		for(int i=0; i<len; i++){
+//			for(int j=i; j>=1; j--){
+//				if(less(a[j], a[j-1])){
+//					exch(a, j, j-1);
+//				}
+//			}
+//		}
 	}
 	
 	public static void doSortRev(@SuppressWarnings("rawtypes") Comparable[] a){
@@ -76,14 +90,13 @@ public class InsertionSort {
 		System.out.println(isSorted(aa));
 		System.out.println("************************");
 		
-		Integer[] in = {9,1,4,6,8,2,3,7,2,4};
+		Integer[] in = {9,77,66,88,45,65,34,89,1,4,5,99,6,8,2,3,7,2,4,67,98,54,5,7,13};
 		//fill(in);
 		display(in);
 		doSort(in);
 		display(in);
 		System.out.println(isSorted(in));
 		System.out.println("************************");
-
 		
 		
 	}
