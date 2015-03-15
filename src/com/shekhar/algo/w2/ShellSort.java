@@ -33,13 +33,15 @@ public class ShellSort {
 		}
 		while(h >=1){
 			for(int i=h ; i<len; i++){
-				for(int j=i; j <len; j++){
+				for(int j=i; j >=h;  j-=h){
 					if(less(a[j], a[j-h])){
 						exch(a, j, j-h);
 					}
+				display(a);
 				}
 			}
 			h=h/3;
+			System.out.println("h reduced to " +h);
 		}
 //		for(int i=0; i<len; i++){
 //			for(int j=i; j>=1; j--){
@@ -65,9 +67,9 @@ public class ShellSort {
 	
 	public static void display(Comparable[] a){
 		for(int i=0; i<a.length; i++){
-			System.out.println(a[i]);
+			System.out.print(a[i] + " ");
 		}
-		System.out.println("************************");
+		System.out.println();
 	}
 
 	public static void fill(Comparable[] a){
@@ -78,19 +80,19 @@ public class ShellSort {
 	}
 	
 	public static void main(String[] args){
-		String[] aa = {"yy","aa","ab","ba","bb","zz"};
-		//fill(aa);
-		display(aa);
-		doSort(aa);
-		display(aa);	
-		System.out.println(isSorted(aa));
-		System.out.println("************************");
-		doSortRev(aa);
-		display(aa);	
-		System.out.println(isSorted(aa));
-		System.out.println("************************");
+//		String[] aa = {"yy","aa","ab","ba","bb","zz"};
+//		//fill(aa);
+//		display(aa);
+//		doSort(aa);
+//		display(aa);	
+//		System.out.println(isSorted(aa));
+//		System.out.println("************************");
+//		doSortRev(aa);
+//		display(aa);	
+//		System.out.println(isSorted(aa));
+//		System.out.println("************************");
 		
-		Integer[] in = {9,77,66,88,45,65,34,89,1,4,5,99,6,8,2,3,7,2,4,67,98,54,5,7,13};
+		Integer[] in = {61,47,16,79,45,11,21,23,34,78}; //{9,77,66,88,45,65,34,89,1,4,5,99,6,8,2,3,7,2,4,67,98,54,5,7,13};
 		//fill(in);
 		display(in);
 		doSort(in);

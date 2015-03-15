@@ -53,9 +53,9 @@ public class SelectionSort {
 	
 	public static void display(Comparable[] a){
 		for(int i=0; i<a.length; i++){
-			System.out.println(a[i]);
+			System.out.print(a[i] + " ");
 		}
-		System.out.println("************************");
+		System.out.println();
 	}
 
 	public static void fill(Comparable[] a){
@@ -66,16 +66,16 @@ public class SelectionSort {
 	}
 	
 	public static void main(String[] args){
-		String[] aa = {"yy","aa","ab","ba","bb","zz"};
-		//fill(aa);
-		display(aa);
-		doSort(aa);
-		display(aa);		
-		doSortRev(aa);
-		display(aa);	
-		System.out.println(isSorted(aa));
+//		String[] aa = {"yy","aa","ab","ba","bb","zz"};
+//		//fill(aa);
+//		display(aa);
+//		doSort(aa);
+//		display(aa);		
+//		doSortRev(aa);
+//		display(aa);	
+//		System.out.println(isSorted(aa));
 		
-		Integer[] in = {9,1,4,6,8,2,3,7,2,4};
+		Integer[] in = {29,71,17,90,72,53,91,14,62,92};
 		//fill(in);
 		display(in);
 		doSort(in);
