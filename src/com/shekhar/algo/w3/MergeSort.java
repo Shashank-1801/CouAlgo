@@ -33,8 +33,7 @@ public class MergeSort {
 			}
 			k++;
 		}
-		
-		
+		display(a);
 	}
 	
 	@SuppressWarnings("rawtypes")
@@ -57,8 +56,9 @@ public class MergeSort {
 	@SuppressWarnings("rawtypes")
 	public static void display(Comparable[] a){
 		for(int i=0; i<a.length; i++){
-			System.out.println(a[i]);
+			System.out.print(a[i] + " ");
 		}
+		System.out.println();
 		System.out.println("************************");
 	}
 	
@@ -73,11 +73,12 @@ public class MergeSort {
 	}
 	
 	public static void main(String[] args){
-		Integer[] in = {9,1,4,6,8,2,3,7,2,4};
+//		Integer[] in = {38,36,10,18,96,65,56,82,80,12,86,61};
+		String[] in = {"sink","lazy","less","trie","size","type","ceil","push","exch","flip","swap","hash"};		
 		//fill(in);
 		display(in);
 		mergeSort(in);
-		display(in);
+//		display(in);
 		System.out.println(isSorted(in));
 		System.out.println("************************");
 	}
