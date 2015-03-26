@@ -73,8 +73,8 @@ public class MergeSort {
 	}
 	
 	public static void main(String[] args){
-//		Integer[] in = {38,36,10,18,96,65,56,82,80,12,86,61};
-		String[] in = {"sink","lazy","less","trie","size","type","ceil","push","exch","flip","swap","hash"};		
+		Integer[] in = {30,32,13,60,15,49,95,12,75,72,27,39};
+//		String[] in = {"sink","lazy","less","trie","size","type","ceil","push","exch","flip","swap","hash"};		
 		//fill(in);
 		display(in);
 		mergeSort(in);

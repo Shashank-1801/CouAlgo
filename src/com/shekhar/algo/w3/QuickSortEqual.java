@@ -1,32 +1,33 @@
 package com.shekhar.algo.w3;
 
-public class QuickSort {
+public class QuickSortEqual {
 
 	@SuppressWarnings({ "rawtypes", "unchecked" })
-	private static boolean isless( Comparable a, Comparable b){
-		return (a.compareTo(b) < 0);
+	private static int isless( Comparable a, Comparable b){
+		return a.compareTo(b);
 	}
 
 	@SuppressWarnings("rawtypes")
 	private static void doSort(Comparable[] a,int low, int hi){
 		for(int i=0; i<a.length; i++){
 			int j=i;
-			int x=low+1;
+			int x=low;
 			int y=hi;
 
 			while(x<y){
-				while(isless(a[x], a[j])){
-					x++;			
-				}
-				while(isless(a[j], a[y])){
+				while(isless(a[j], a[y]) < 0 || isless(a[j], a[y])== 0 ){  //
 					y--;
 				}
+				while(isless(a[x], a[j]) < 0 && (x < y)){
+					x++;
+				}
+				
 				if(x<y){
 					exch(a, x, y);
-				}else{
-					exch(a, x, j);
-				}
+				}				
 			}
+			exch(a, y, j);
+
 			display(a);
 		}
 	}
@@ -55,7 +56,7 @@ public class QuickSort {
 	@SuppressWarnings("rawtypes")
 	public static boolean isSorted(Comparable[] a){
 		for(int i=0; i<a.length-1; i++){
-			if(isless(a[i+1], a[i])){
+			if(isless(a[i], a[i+1]) > 0){
 				return false;
 			}
 		}
@@ -63,8 +64,8 @@ public class QuickSort {
 	}
 
 	public static void main(String[] args){
-		//		Integer[] in = {38,36,10,18,96,65,56,82,80,12,86,61};
-		String[] in = {"B", "A", "B", "B", "B", "A", "B", "B", "B", "A", "B", "B"};		
+//		Integer[] in = {38,36,10,18,96,65,56,82,80,12,86,61};
+		String[] in = {"sink","lazy","less","trie","size","type","ceil","push","exch","flip","swap","hash"};		
 		//fill(in);
 		display(in);
 		quickSort(in);
