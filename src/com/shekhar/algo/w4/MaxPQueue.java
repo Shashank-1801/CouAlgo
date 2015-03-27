@@ -13,7 +13,7 @@ public class MaxPQueue<Key extends Comparable<Key>>{
 
 	public void display(){
 		System.out.println("************");
-		for(int i=1; i<N; i++){
+		for(int i=1; i<N+1; i++){
 			System.out.print(pq[i] + " ");
 		}
 		System.out.println();
