@@ -5,10 +5,13 @@ import java.util.Random;
 public class W4Part2 {
 
 	public static void main(String[] args) {
-		SymbolTable<Integer, String> st = new SymbolTable<Integer, String>();
+//		SymbolTable<Integer, String> st = new SymbolTable<Integer, String>();
+		BST<Integer, String> st = new BST<Integer, String>();
+
 		
 		System.out.println(st.isEmpty());
-		st.put(10, "A");
+		//st.put(50, "A");
+		st.put(12, null);
 		for(int i=0; i<16; i++){
 			st.put(RandomInt(),RandomChar());
 		}
@@ -16,7 +19,7 @@ public class W4Part2 {
 
 		for(int i=0; i<15; i++){
 			int r = RandomInt();
-			System.out.println("is "+ r + " present: " +st.contains(r));
+			System.out.println("Is "+ r + " present: " +st.contains(r));
 		}
 	}
 	
@@ -39,5 +42,4 @@ public class W4Part2 {
 		}
 		return v;
 	}
-
 }
