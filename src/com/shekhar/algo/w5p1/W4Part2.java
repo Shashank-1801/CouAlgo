@@ -11,16 +11,32 @@ public class W4Part2 {
 		
 		System.out.println(st.isEmpty());
 //		st.put(50, "A");
-		st.put(12, null);
-		for(int i=0; i<16; i++){
-			st.put(RandomInt(),RandomChar());
+//		st.put(12, null);
+//		for(int i=0; i<16; i++){
+//			st.put(RandomInt(),RandomChar());
+//		}
+
+		Integer[] in = {78,32,81,23,62,79,99,11,24,92};
+		
+		for (Integer integer : in) {
+			st.put(integer, RandomChar());
+		}
+		
+		st.display();
+//		st.displayInOrder();
+//		
+		Integer[] in2 = {39, 29 , 96};
+		for (Integer integer : in2) {
+			st.put(integer, RandomChar());
 		}
 		st.display();	
-
-		for(int i=0; i<15; i++){
-			int r = RandomInt();
-			System.out.println("Is "+ r + " present: " +st.contains(r));
-		}
+//
+//		for(int i=0; i<15; i++){
+//			int r = RandomInt();
+//			System.out.println("Is "+ r + " present: " +st.contains(r));
+//		}
+//		
+		st.displayInOrder();
 	}
 	
 	public static String RandomChar(){

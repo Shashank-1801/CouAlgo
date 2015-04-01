@@ -115,24 +115,38 @@ public class RedBlackTree<Key extends Comparable<Key>, Value> {
 	//
 
 	public void display(){
+		System.out.println("--------PRE ORDER--------");
 		display(root);
 	}
 	
-	public void display2(){
-		int level = 0 ; 	//root node
-		Node n = root;
-		while(n!=null){
-			
-			System.out.println(n.key +" : "+ n.value);
+	public void displayInOrder(){
+		System.out.println("--------IN ORDER--------");
+		displayInOrder(root);
+	}
+	
+	private void displayInOrder(Node r){
+		if(r == null) return;
+		if(compare(r.key, root.key) == 0){
+			System.out.println(r.key + ":" +r.value + " *ROOT* ");
+		}else if(r.color==RED){
+			System.out.println("RED --> "+ r.key + ":" +r.value);
 		}
+		else{
+			System.out.println(r.key + ":" +r.value);
+		}
+		displayInOrder(r.left);
+		displayInOrder(r.right);
 	}
 
 	private void display(Node r){
 		if(r==null) return;
 		display(r.left);
 		if(compare(r.key, root.key) == 0){
-			System.out.println("*ROOT* " + r.key + ":" +r.value);
-		}else{
+			System.out.println(r.key + ":" +r.value + " *ROOT* ");
+		}else if(r.color==RED){
+			System.out.println("RED --> "+ r.key + ":" +r.value);
+		}
+		else{
 			System.out.println(r.key + ":" +r.value);
 		}
 		display(r.right);
