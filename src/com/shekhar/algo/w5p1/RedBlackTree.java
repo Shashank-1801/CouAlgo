@@ -44,9 +44,10 @@ public class RedBlackTree<Key extends Comparable<Key>, Value> {
 			}
 			else if(cmp > 0){
 				temp.right = insert(temp.right,k,v);
-				temp = rotateLeft(temp);
 				if(isRed(temp.left) && isRed(temp.right)){
 					temp = flipColor(temp);
+				}else if(isRed(temp.right)){
+					temp = rotateLeft(temp);
 				}
 				return temp;
 			}
@@ -115,6 +116,15 @@ public class RedBlackTree<Key extends Comparable<Key>, Value> {
 
 	public void display(){
 		display(root);
+	}
+	
+	public void display2(){
+		int level = 0 ; 	//root node
+		Node n = root;
+		while(n!=null){
+			
+			System.out.println(n.key +" : "+ n.value);
+		}
 	}
 
 	private void display(Node r){
