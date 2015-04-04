@@ -2,7 +2,7 @@ package com.shekhar.algo.w5p1;
 
 import java.util.Random;
 
-public class W4Part2 {
+public class W5Part1 {
 
 	public static void main(String[] args) {
 //		SymbolTable<Integer, String> st = new SymbolTable<Integer, String>();

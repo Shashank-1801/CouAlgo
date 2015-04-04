@@ -1,52 +1,43 @@
-package com.shekhar.algo.w5p1;
+package com.shekhar.algo.w5p2;
 
 
-public class RedBlackTree<Key extends Comparable<Key>, Value> {
+public class OIBST<low extends Comparable<low>, Value> {
+
+	Node root =null;
 
 	public final boolean RED = true;
 	public final boolean BLACK = false;
 
 	class Node{
-		Key key;
+		low low, high;
 		Value value;
-		Node right;
-		Node left;
+		Node left, right;
 		boolean color;
 
-		Node(Key key, Value value){
-			this.key = key;
+
+		Node(low low ,low high, Value value){
+			this.low = low;
+			this.high = high;
 			this.value = value;
 			this.color = RED;
 		}
 	}
-	
-	class List{
-		Node n;
-		List next;
-		
-		List(Node n){
-			this.n = n;
-		}
 
-	}
-
-	Node root = null;
-
-	public void put(Key k, Value v){
-		if(v==null) {
+	public void put(low low, low high, Value val){
+		if(val==null) {
 			System.out.println("Invalid entry!");
 			return;
 		}
-		System.out.println("trying to put " + k + " : "+ v);
-		root = insert(root, k,v);
+		System.out.println("trying to put (" + low + ", " + high + ") : "+ val);
+		root = insert(root, low, high, val);
 	}
 
-	public Node insert(Node r, Key k, Value v){
+	private Node insert(Node r, low l, low h, Value v){
 		Node temp = r;
 		while(temp!=null){
-			int cmp = compare(k, temp.key);
+			int cmp = compare(l, temp.low);
 			if(cmp < 0){ 
-				temp.left = insert(temp.left,k,v);
+				temp.left = insert(temp.left, l, h, v);
 				if(isRed(temp.left) && isRed(temp.left.left)) {
 					temp = rotateRight(temp);
 					temp = flipColor(temp);
@@ -54,7 +45,7 @@ public class RedBlackTree<Key extends Comparable<Key>, Value> {
 				return temp;
 			}
 			else if(cmp > 0){
-				temp.right = insert(temp.right,k,v);
+				temp.right = insert(temp.right, l, h, v);
 				if(isRed(temp.left) && isRed(temp.right)){
 					temp = flipColor(temp);
 				}else if(isRed(temp.right)){
@@ -68,14 +59,14 @@ public class RedBlackTree<Key extends Comparable<Key>, Value> {
 			}
 		}
 
-		temp = new Node(k, v);
+		temp = new Node(l, h, v);
 		return temp;
 	}
 
-	public Value get(Key k){
+	public Value get(low k){
 		Node temp = root;
 		while(temp!=null){
-			int cmp = compare(k, temp.key);
+			int cmp = compare(k, temp.low);
 			if(cmp < 0)
 				temp = temp.left;
 			else if(cmp > 0)
@@ -87,10 +78,10 @@ public class RedBlackTree<Key extends Comparable<Key>, Value> {
 	}
 
 
-	public boolean contains(Key key){
+	public boolean contains(low low){
 		Node temp = root;
 		while(temp!=null){
-			int cmp = compare(key, temp.key);
+			int cmp = compare(low, temp.low);
 			if(cmp < 0)
 				temp = temp.left;
 			else if(cmp > 0)
@@ -109,55 +100,58 @@ public class RedBlackTree<Key extends Comparable<Key>, Value> {
 		System.out.println("--------PRE ORDER--------");
 		display(root);
 	}
-	
+
 	public void displayInOrder(){
 		System.out.println("--------IN ORDER--------");
 		displayInOrder(root);
 	}
 
-	
-//	public void displayLevelOrder(){
-//		System.out.println("--------LEVEL ORDER--------");
-//		List l = new List(root);
-//		displayLevelOrder(l);
-//		
-//	}
-//	
-//	private Node displayLevelOrder(List rt){
-//		if( rt.n == null) return null;
-//		List new_rt;
-//		while(rt!=null){
-//			Node r = rt.n;
-//
-//			if(compare(r.key, root.key) == 0){
-//				System.out.println(r.key + ":" +r.value + " *ROOT* ");
-//			}else if(r.color==RED){
-//				System.out.println("RED --> "+ r.key + ":" +r.value);
-//			}
-//			else{
-//				System.out.println(r.key + ":" +r.value);
-//			}
-//
-//			rt = rt.next;
-//		}
-//		
-//		return null;
-//	}
-//	
-//	private void add(Node x, List l){
-//
-//	}
-	
-	private void displayInOrder(Node r){
-		if(r == null) return;
-		if(compare(r.key, root.key) == 0){
-			System.out.println(r.key + ":" +r.value + " *ROOT* ");
+
+	//		public void displayLevelOrder(){
+	//			System.out.println("--------LEVEL ORDER--------");
+	//			List l = new List(root);
+	//			displayLevelOrder(l);
+	//			
+	//		}
+	//	
+	//		private Node displayLevelOrder(List rt){
+	//			if( rt.n == null) return null;
+	//			List new_rt;
+	//			while(rt!=null){
+	//				Node r = rt.n;
+	//
+	//				if(compare(r.low, root.low) == 0){
+	//					System.out.println(r.low + ":" +r.value + " *ROOT* ");
+	//				}else if(r.color==RED){
+	//					System.out.println("RED --> "+ r.low + ":" +r.value);
+	//				}
+	//				else{
+	//					System.out.println(r.low + ":" +r.value);
+	//				}
+	//
+	//				rt = rt.next;
+	//			}
+	//			
+	//			return null;
+	//		}
+	//	
+	//		private void add(Node x, List l){
+	//
+	//		}
+
+	private void printStyle(Node r){
+		if(compare(r.low, root.low) == 0){
+			System.out.println("(" +r.low + ", " + r.high + ")" + " : " +r.value + " *ROOT* ");
 		}else if(r.color==RED){
-			System.out.println("RED --> "+ r.key + ":" +r.value);
+			System.out.println("RED --> (" +r.low + ", " + r.high + ") : " +r.value);
 		}
 		else{
-			System.out.println(r.key + ":" +r.value);
+			System.out.println("(" +r.low + ", " + r.high + ")" + " : " +r.value);
 		}
+	}
+	private void displayInOrder(Node r){
+		if(r == null) return;
+		printStyle(r);
 		displayInOrder(r.left);
 		displayInOrder(r.right);
 	}
@@ -165,19 +159,12 @@ public class RedBlackTree<Key extends Comparable<Key>, Value> {
 	private void display(Node r){
 		if(r==null) return;
 		display(r.left);
-		if(compare(r.key, root.key) == 0){
-			System.out.println(r.key + ":" +r.value + " *ROOT* ");
-		}else if(r.color==RED){
-			System.out.println("RED --> "+ r.key + ":" +r.value);
-		}
-		else{
-			System.out.println(r.key + ":" +r.value);
-		}
+		printStyle(r);
 		display(r.right);
 	}
 
-	
-	public int compare(Key a, Key b){
+
+	public int compare(low a, low b){
 		return a.compareTo(b);	
 	}
 
@@ -220,4 +207,5 @@ public class RedBlackTree<Key extends Comparable<Key>, Value> {
 
 		return n;
 	}
+
 }
