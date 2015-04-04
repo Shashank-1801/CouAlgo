@@ -1,7 +1,7 @@
 package com.shekhar.algo.w5p2;
 
 
-public class OIBST<low extends Comparable<low>, Value> {
+public class OIBST<Key extends Comparable<Key>, Value> {
 
 	Node root =null;
 
@@ -9,21 +9,24 @@ public class OIBST<low extends Comparable<low>, Value> {
 	public final boolean BLACK = false;
 
 	class Node{
-		low low, high;
+		Key low, high;
 		Value value;
 		Node left, right;
 		boolean color;
+		int lenght;
 
 
-		Node(low low ,low high, Value value){
-			this.low = low;
-			this.high = high;
+		@SuppressWarnings("unchecked")
+		Node(Integer low ,Integer high, Value value){
+			this.low = (Key) low;
+			this.high = (Key) high;
 			this.value = value;
 			this.color = RED;
+			this.lenght = (Integer)high-low;
 		}
 	}
 
-	public void put(low low, low high, Value val){
+	public void put(Key low, Key high, Value val){
 		if(val==null) {
 			System.out.println("Invalid entry!");
 			return;
@@ -32,12 +35,13 @@ public class OIBST<low extends Comparable<low>, Value> {
 		root = insert(root, low, high, val);
 	}
 
-	private Node insert(Node r, low l, low h, Value v){
+	private Node insert(Node r, Key l, Key h, Value v){
 		Node temp = r;
 		while(temp!=null){
 			int cmp = compare(l, temp.low);
 			if(cmp < 0){ 
 				temp.left = insert(temp.left, l, h, v);
+				temp.lenght = Math.max(temp.lenght, temp.left.lenght);
 				if(isRed(temp.left) && isRed(temp.left.left)) {
 					temp = rotateRight(temp);
 					temp = flipColor(temp);
@@ -46,6 +50,7 @@ public class OIBST<low extends Comparable<low>, Value> {
 			}
 			else if(cmp > 0){
 				temp.right = insert(temp.right, l, h, v);
+				temp.lenght = Math.max(temp.lenght, temp.right.lenght);
 				if(isRed(temp.left) && isRed(temp.right)){
 					temp = flipColor(temp);
 				}else if(isRed(temp.right)){
@@ -59,11 +64,11 @@ public class OIBST<low extends Comparable<low>, Value> {
 			}
 		}
 
-		temp = new Node(l, h, v);
+		temp = new Node((Integer)l, (Integer)h, v);
 		return temp;
 	}
 
-	public Value get(low k){
+	public Value get(Key k){
 		Node temp = root;
 		while(temp!=null){
 			int cmp = compare(k, temp.low);
@@ -78,16 +83,23 @@ public class OIBST<low extends Comparable<low>, Value> {
 	}
 
 
-	public boolean contains(low low){
+	public boolean intersects(Key low, Key high){
 		Node temp = root;
 		while(temp!=null){
-			int cmp = compare(low, temp.low);
-			if(cmp < 0)
-				temp = temp.left;
-			else if(cmp > 0)
-				temp = temp.right;
-			else
+			int cmplowlow = compare(low, temp.low);
+			int cmplowhigh = compare(high, temp.low);
+			if(cmplowlow < 0 && cmplowhigh > 0){
 				return true;
+			}else if(cmplowlow > 0 && cmplowhigh <0){
+				return true;
+			}else if(cmplowhigh <0 && cmplowlow < 0){
+				return true;
+			}else if(cmplowhigh < 0 ){
+				temp = temp.left;
+			}else{
+				temp = temp.right;
+			}
+			
 		}
 		return false;
 	}
@@ -141,12 +153,12 @@ public class OIBST<low extends Comparable<low>, Value> {
 
 	private void printStyle(Node r){
 		if(compare(r.low, root.low) == 0){
-			System.out.println("(" +r.low + ", " + r.high + ")" + " : " +r.value + " *ROOT* ");
+			System.out.println("(" +r.low + ", " + r.high + ")" + " : " +r.value + "(" + r.lenght + ")" +" *ROOT* ");
 		}else if(r.color==RED){
-			System.out.println("RED --> (" +r.low + ", " + r.high + ") : " +r.value);
+			System.out.println("(" +r.low + ", " + r.high + ") : " +r.value+ "(" + r.lenght + ")" + " <-- RED");
 		}
 		else{
-			System.out.println("(" +r.low + ", " + r.high + ")" + " : " +r.value);
+			System.out.println("(" +r.low + ", " + r.high + ")" + " : " +r.value+ "(" + r.lenght + ")");
 		}
 	}
 	private void displayInOrder(Node r){
@@ -164,7 +176,7 @@ public class OIBST<low extends Comparable<low>, Value> {
 	}
 
 
-	public int compare(low a, low b){
+	public int compare(Key a, Key b){
 		return a.compareTo(b);	
 	}
 

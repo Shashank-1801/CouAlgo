@@ -11,8 +11,9 @@ public class W5Part2 {
 		
 		System.out.println(st.isEmpty());
 		st.put(6, 12, null);
-		for(int i=0; i<16; i++){
-			st.put(RandomInt(), RandomInt(), RandomChar());
+		for(int i=0; i<10; i++){
+			int p = RandomInt();
+			st.put(p, RandomInt(p), RandomChar());
 		}
 
 //		Integer[] in = {78,32,81,23,62,79,99,11,24,92};
@@ -35,7 +36,11 @@ public class W5Part2 {
 //			System.out.println("Is "+ r + " present: " +st.contains(r));
 //		}
 //		
-		st.displayInOrder();
+		for(int i=0; i<7; i++){
+			int p = RandomInt();
+			int q = RandomInt(p);
+			System.out.println("Does (" + p + ", "+ q+ ") intersects? " +st.intersects(p, q));
+		}
 	}
 	
 	public static String RandomChar(){
@@ -48,11 +53,20 @@ public class W5Part2 {
 		String s = (Character.toString((char)v));
 		return s;
 	}
-	
+		
 	public static int RandomInt(){
 		Random r = new Random();
 		int v = -1;
 		while(v<0){
+			v = r.nextInt()%9;
+		}
+		return v;
+	}
+	
+	public static int RandomInt(int x){
+		Random r = new Random();
+		int v = -1;
+		while(v<x){
 			v = r.nextInt()%9;
 		}
 		return v;
