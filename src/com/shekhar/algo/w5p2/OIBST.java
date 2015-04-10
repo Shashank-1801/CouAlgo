@@ -99,7 +99,7 @@ public class OIBST<Key extends Comparable<Key>, Value> {
 			}else{
 				temp = temp.right;
 			}
-			
+
 		}
 		return false;
 	}
@@ -117,39 +117,6 @@ public class OIBST<Key extends Comparable<Key>, Value> {
 		System.out.println("--------IN ORDER--------");
 		displayInOrder(root);
 	}
-
-
-	//		public void displayLevelOrder(){
-	//			System.out.println("--------LEVEL ORDER--------");
-	//			List l = new List(root);
-	//			displayLevelOrder(l);
-	//			
-	//		}
-	//	
-	//		private Node displayLevelOrder(List rt){
-	//			if( rt.n == null) return null;
-	//			List new_rt;
-	//			while(rt!=null){
-	//				Node r = rt.n;
-	//
-	//				if(compare(r.low, root.low) == 0){
-	//					System.out.println(r.low + ":" +r.value + " *ROOT* ");
-	//				}else if(r.color==RED){
-	//					System.out.println("RED --> "+ r.low + ":" +r.value);
-	//				}
-	//				else{
-	//					System.out.println(r.low + ":" +r.value);
-	//				}
-	//
-	//				rt = rt.next;
-	//			}
-	//			
-	//			return null;
-	//		}
-	//	
-	//		private void add(Node x, List l){
-	//
-	//		}
 
 	private void printStyle(Node r){
 		if(compare(r.low, root.low) == 0){
@@ -220,4 +187,66 @@ public class OIBST<Key extends Comparable<Key>, Value> {
 		return n;
 	}
 
+	class ListNode{
+		Node node;
+		ListNode next;
+		
+		ListNode(Node m){
+			this.node = m;
+		}
+	}
+	
+	ListNode listRoot = new ListNode(root);
+	
+	public void displayLevelOrder(){
+		System.out.println("--------LEVEL ORDER--------");
+		ListNode listRoot = new ListNode(root);
+		displayLevelOrder(listRoot);
+		System.out.println("--------LEVEL ORDER--------");
+	}
+
+	private Node displayLevelOrder(ListNode rt){
+		ListNode t = rt;
+		System.out.println("Size of this tree is " + size(rt));
+		ListNode new_list = null;
+		if(t==null) return null;
+		while(t!=null){
+			if(t.node!=null){
+				printStyle(t.node);
+				new_list = add(t.node.left, new_list);
+				new_list = add(t.node.right, new_list);
+			}
+			t = t.next;
+		}
+		displayLevelOrder(new_list);
+		return null;
+	}
+
+	private ListNode add(Node x, ListNode head){
+		if(x==null) return head;
+		ListNode temp = new ListNode(x);
+		if(head==null){
+			head = temp;
+		}else{
+			ListNode t2 = head;
+			while(t2.next!=null){
+				t2 = t2.next;
+			}
+			t2.next = temp;
+		}
+		
+		return head;		
+	}
+	
+	private int size(ListNode head){
+		int count =0;
+		ListNode temp = head;
+		
+		while(temp!=null){
+			temp = temp.next;
+			count++;
+		}
+		
+		return count;
+	}
 }
