@@ -2,16 +2,15 @@ package week6;
 
 import java.util.Random;
 
-public class Week6 {
+public class Week6SC {
 
 	/**
 	 * @param args
 	 */
 	public static void main(String[] args) {
 
-//		HashTablesSC st = new HashTablesSC();
+		HashTablesSC st = new HashTablesSC();
 
-		HashTablesLP st = new HashTablesLP();
 		st.put("abc", 98989);
 		for(int i=0; i<30; i++){
 			st.put(RandomChar(), RandomInt());
