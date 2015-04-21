@@ -1,5 +1,6 @@
 package algoPart2.w1;
 
+import java.util.Iterator;
 import java.util.Random;
 
 public class TestClass {
@@ -12,6 +13,8 @@ public class TestClass {
 
 		g.add(3, 4);
 		g.add(4, 5);
+		
+		g.add(4, 7);
 
 		g.add(6, 7);
 		g.add(7, 8);
@@ -20,6 +23,14 @@ public class TestClass {
 			int p = RandomInt(10);
 			System.out.println("IsAdj? " + p + " & " + (p+1) + " : " + g.isAdjacent(p, p+1) );
 		}
+		
+		System.out.println("IsAdj? " + 4 + " & " + 7 + " : " + g.isAdjacent(4, 7) );
+		
+		Iterator<Integer> i = g.adjList(4);
+		while(i.hasNext()){
+			System.out.println(i.next());
+		}
+
 
 	}
 
