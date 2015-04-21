@@ -3,7 +3,7 @@ package algoPart2.w1;
 import java.util.Iterator;
 
 
-public class BFS {
+public class DFS {
 
 	class Node implements Iterable<Integer>{
 		Integer value;
@@ -29,7 +29,7 @@ public class BFS {
 	private final int V;
 	private Node[] adj;
 
-	public BFS(int v){
+	public DFS(int v){
 		this.V = v;
 		adj = new Node[v];
 
