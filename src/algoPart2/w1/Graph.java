@@ -1,12 +1,9 @@
 package algoPart2.w1;
 
-import java.util.Iterator;
-import java.util.List;
-
-public class Graph {
+public class Graph{
 
 
-	class Node implements Iterator<Integer>{
+	class Node {
 		int vertex;
 		Node next;
 
@@ -19,29 +16,6 @@ public class Graph {
 			return this;
 		}
 
-		@Override
-		public boolean hasNext() {
-			if(this == null){
-				return false;
-			}else if(this.next !=null){
-				return true;
-			}
-			return false;
-		}
-
-		@Override
-		public Integer next() {
-			if(hasNext()){
-				return this.vertex;
-			}
-			return null;
-		}
-
-		@Override
-		public void remove() {
-			// TODO Auto-generated method stub
-
-		}
 	}
 
 	private final int V;
@@ -88,49 +62,20 @@ public class Graph {
 		return false; 
 	}
 
-	public Node list(int vertex){
-		return vertexList[vertex];
-	}
-
-	public Iterator<Integer> adjList(int vertex){
+	public int[] adjList(int vertex){
+		int count =0;
+		Node temp = vertexList[vertex];
+		while(temp!=null){
+			count++;
+			temp=temp.next;
+		}
 		
-		final int v = vertex;
-		
-		Iterator<Integer> i = new Iterator<Integer>() {
-
-			@Override
-			public boolean hasNext() {
-				if(vertexList[v] == null){
-					return false;
-				}else if(vertexList[v].next !=null){
-					return true;
-				}
-				return false;
-			}
-
-			@Override
-			public Integer next() {
-				if(vertexList[v]!= null){
-					Integer val = vertexList[v].vertex;
-					vertexList[v] = vertexList[v].next;
-					return val;
-				}
-				return null;
-			}
-			//data lose as the value 3 is not appearing in the list...
-			//TODO
-
-			@Override
-			public void remove() {
-				// TODO Auto-generated method stub
-
-			}
-			
-		}; 
-
-		return i;
-
-
+		int[] list = new int[count];
+		temp = vertexList[vertex];
+		for(int i=0; i<count; i++,temp=temp.next){
+			list[i] = temp.vertex;
+		}
+		return list;
 	}
 
 }
