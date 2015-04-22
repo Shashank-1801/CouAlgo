@@ -1,55 +1,57 @@
 package algoPart2.w1;
 
-import java.util.Iterator;
+import java.util.LinkedList;
+import java.util.Queue;
 
 
 public class BFS {
 
-	class Node implements Iterable<Integer>{
-		Integer value;
-		Node next;
+	final int size;
+	boolean[] visited;
+	int[] distance;
+	int currentDist = 1;
+	Graph g;
 
-		public Node(Integer value){
-			this.value = value;
-		}
+	Queue<Integer> s = new LinkedList<>();
 
-		public void add(Integer w) {
-			Node temp = new Node(w);
-			this.next = temp;					
-		}
+	BFS(Graph G, int initVertex){
+		size = G.V();
+		visited = new boolean[size];
+		distance = new int[size];
+		g = G;
+		s.add(initVertex);
+		bfs();
+	}
 
-		@Override
-		public Iterator<Integer> iterator() {
-			// TODO Auto-generated method stub
-			return null;
+	private void bfs(){
+		while(!s.isEmpty()){
+			Integer ver = s.remove();
+			if(ver == null){
+				currentDist++;
+			}else if(visited[ver]==true){
+				currentDist--;
+			}
+			else if(visited[ver] == false){
+				for(int x : g.adjList(ver)){
+					s.add(x);
+				}
+				s.add(null);
+				visited[ver] = true;
+				distance[ver] = currentDist;
+			}else{
+				//do nothing
+			}
 		}
 	}
 
+	public boolean isConnected(int x, int y){
+		return (visited[x]== true && visited[y]==true);
+	}
 
-	private final int V;
-	private Node[] adj;
-
-	public BFS(int v){
-		this.V = v;
-		adj = new Node[v];
-
-		for(int i=0; i<v; v++){
-			adj[v] = new Node((Integer) null);
+	public void displayConnected(){
+		for(int i=0; i<size; i++){
+			System.out.println( i + " --> " + visited[i] + " --> " + distance[i]);
 		}
-	}
-
-	public void addEdge(int v, int w){
-		adj[v].add(w);
-		adj[w].add(v);
-		
-	}
-	
-	public int V(){
-	return this.V;
-	}
-	
-	public int E(){
-		return 0;
 	}
 
 }

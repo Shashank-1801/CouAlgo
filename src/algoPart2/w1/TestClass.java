@@ -1,5 +1,7 @@
 package algoPart2.w1;
 
+import java.util.LinkedList;
+import java.util.Queue;
 import java.util.Random;
 
 public class TestClass {
@@ -17,6 +19,9 @@ public class TestClass {
 
 		g.add(6, 7);
 		g.add(7, 8);
+		
+		g.add(3, 0);
+		g.add(1, 9);
 
 		for(int i=0; i<10; i++){
 			int p = RandomInt(10);
@@ -36,6 +41,18 @@ public class TestClass {
 		for(int x : adj){
 			System.out.println(x);
 		}
+		
+//		Queue<Integer> p = new LinkedList<>();
+//		p.add(123);
+//		System.out.println(p.remove());
+		
+		BFS b = new BFS(g, 4);
+		
+		System.out.println(b.isConnected(0, 6));
+		System.out.println(b.isConnected(4, 8));
+		
+		b.displayConnected();
+		
 
 	}
 
