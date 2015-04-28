@@ -42,7 +42,7 @@ public class Graph{
 			tempx.next = null;
 		}else{
 			Node temp = vertexList[y];
-			tempy.next = temp;
+			tempx.next = temp;
 		}
 		vertexList[y] = tempx;
 	}
