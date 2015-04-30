@@ -1,4 +1,4 @@
-package algoPart2.w1;
+package algoPart2.w1p1;
 
 public class DFS {
 

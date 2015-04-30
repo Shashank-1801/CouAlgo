@@ -1,4 +1,4 @@
-package algoPart2.w1;
+package algoPart2.w1p1;
 /*************************************************************************
  *  Compilation:  javac Bag.java
  *  Execution:    java Bag < input.txt

@@ -1,4 +1,4 @@
-package algoPart2.w1;
+package algoPart2.w1p1;
 
 import java.util.Random;
 
@@ -53,10 +53,10 @@ public class TestClass {
 
 		CC c = new CC(g);
 
-
-
+		System.out.println("~~~~~~~~~~~~~~~~~~~~~~~~~");
+	
 	}
-
+	
 	public static int RandomInt(int limit){
 		Random r = new Random();
 		int p =-1;
