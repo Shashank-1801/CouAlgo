@@ -12,6 +12,8 @@ public class TestClassw1p2 {
 		d.add(1, 2);
 		d.add(3, 0);
 		d.add(0, 3);
+		d.add(6, 7);
+		d.add(4, 7);
 
 		for(int i=0; i<10; i++){
 			System.out.print("Adjacent to " + i + " : ");
@@ -21,6 +23,15 @@ public class TestClassw1p2 {
 			}
 			System.out.println();
 		}
+		
+		System.out.println("~~~~~~~~~~~~~~~~~~~~~~~~~");
+
+		CC c = new CC(d);
+		for(int i=0; i<10; i++){
+			System.out.print(i + " ");
+		}
+		System.out.println();
+		System.out.println("~~~~~~~~~~~~~~~~~~~~~~~~~");
 	}
 
 	public static int RandomInt(int limit){
